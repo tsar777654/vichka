@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Age Verification</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+    }
+
+    video.bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 1;
+    }
+
+    .age-modal {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 340px;
+      margin: auto;
+      margin-top: 15vh;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
+
+    .age-modal h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: #ffbfd1;
+      text-shadow: 0 0 12px rgba(255, 182, 193, 0.7);
+    }
+
+    .age-modal p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      color: #ffe3ec;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    .btn-yes {
+      background: linear-gradient(135deg, #ff0055, #ff3366);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 0, 85, 0.5);
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 0, 85, 0.7);
+    }
+
+    .btn-no {
+      background: #222;
+      color: #ccc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-no:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (max-width: 420px) {
+      .age-modal {
+        padding: 1.5rem;
+      }
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="https://cdn.coverr.co/videos/coverr-sensual-model-5711/1080p.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="age-modal">
+    <h1>Age Verification</h1>
+    <p>Are you 18 years of age or older?</p>
+    <div class="buttons">
+      <button class="btn btn-no" onclick="denyAccess()">No</button>
+      <button class="btn btn-yes" onclick="grantAccess()">Yes</button>
+    </div>
+  </div>
+
+  <script>
+    function grantAccess() {
+      window.location.href = "https://your-main-site.com";
+    }
+    function denyAccess() {
+      window.location.href = "https://www.google.com";
+    }
+  </script>
+</body>
+</html>
