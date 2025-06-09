@@ -1,183 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Age Check</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lonely Ladies Are Waiting For You</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Arial', sans-serif;
-      background: #0b0b0c;
-      overflow: hidden;
-      color: #fff;
-    }
-    video.bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
-      z-index: 1;
-    }
-    .age-box, .loader-box {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #111, #333);
+      color: white;
       text-align: center;
-      padding: 1.5rem;
-      max-width: 300px;
-      width: 90%;
-      background: rgba(20, 20, 20, 0.95);
-      border-radius: 20px;
-      box-shadow: 0 0 30px #ff005580;
+      padding: 30px;
     }
-    h1.typing-text {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #ff3366;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: .1em solid #fff;
-      width: 0;
-      animation: typing 3s steps(30, end) forwards, blink .7s infinite;
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff0055;
     }
-    @keyframes typing { from { width: 0 } to { width: 100% } }
-    @keyframes blink { 50% { border-color: transparent } }
-    p { font-size: 1rem; color: #eee; margin: 1rem 0 2rem; }
-    .buttons { display: flex; flex-direction: column; gap: 1rem; }
-    .btn {
-      padding: 0.9rem;
-      font-size: 1rem;
+
+    h1 {
+      font-size: 2.5em;
+      color: #ff0055;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .age-check-btn {
+      background-color: #ff0055;
       border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-    .btn-yes {
-      background: linear-gradient(135deg, #ff0055, #ff3366);
-      color: #fff;
-      box-shadow: 0 0 12px #ff3366aa;
-      animation: pulse 1.5s infinite;
-    }
-    .btn-no { background: #333; color: #ccc; }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.6); }
-      70% { box-shadow: 0 0 0 10px rgba(255, 51, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
-    }
-    .chat { text-align: left; margin-top: 1rem; font-size: 0.95rem; }
-    .chat div {
-      margin-bottom: 0.5rem;
-      background: #1f1f1f;
-      padding: 0.6rem;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
       border-radius: 10px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .spinner {
-      border: 4px solid rgba(255, 255, 255, 0.2);
-      border-top: 4px solid #ff3366;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      margin: 1rem auto;
-      animation: spin 1s linear infinite;
+
+    .age-check-btn:hover {
+      background-color: #e6004c;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .timer { font-size: 1rem; color: #ffb6c1; margin-top: 1rem; }
-    @media (min-width: 480px) {
-      .buttons { flex-direction: row; justify-content: space-between; }
+
+    #age-check {
+      display: block;
+    }
+
+    #redirect-section {
+      display: none;
     }
   </style>
-  <script>
-    async function getGeoCity() {
-      try {
-        const res = await fetch("https://ipapi.co/json/");
-        const data = await res.json();
-        return data.city || "your area";
-      } catch (e) {
-        return "your area";
-      }
-    }
-  </script>
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop playsinline>
-    <source src="assets/bg.mp4" type="video/mp4">
-  </video>
-  <div class="overlay"></div>
-  <div class="age-box" id="ageBox">
-    <h1 class="typing-text">Are you 18 or older?</h1>
-    <p>This content is only for adults.<br>Please confirm to continue.</p>
-    <div class="buttons">
-      <button class="btn btn-yes" onclick="startExperience()">Yes, I am 18+</button>
-      <button class="btn btn-no" onclick="denyAccess()">No, take me back</button>
+  <div class="container">
+    <div id="age-check">
+      <h1>Adults Only</h1>
+      <p>This site contains content only suitable for people 18 years and older.<br>Are you 18 or older?</p>
+      <button class="age-check-btn" onclick="verifyAge()">Yes, I am 18+</button>
+    </div>
+
+    <div id="redirect-section">
+      <h1>You're In!</h1>
+      <p>Hot and lonely women are waiting for you...<br>Click below to meet them now!</p>
+      <a href="javascript:void(0)" 
+         onclick="window.open(decodeURIComponent( window.location.href.substr(window.location.href.lastIndexOf('aref=')+5)), '_self');" 
+         class="age-check-btn">Enter Now</a>
     </div>
   </div>
-  <audio id="moan" preload="auto">
-    <source src="assets/moan.mp3" type="audio/mpeg" />
-  </audio>
+
   <script>
-    async function startExperience() {
-      const moan = document.getElementById("moan");
-      moan.play().catch(() => {});
-      const city = await getGeoCity();
-      const box = document.getElementById("ageBox");
-      box.className = "loader-box";
-      box.innerHTML = `
-        <div class="spinner"></div>
-        <p>Searching for local profiles near <b>${city}</b>...</p>
-        <div class="chat" id="chat"></div>
-        <div class="timer" id="timer">Offer expires in: 30s</div>
-      `;
-      let chat = document.getElementById("chat");
-      let messages = [
-        "Anna (2km): Hey, are you around? 😘",
-        "Lola (1km): Wanna meet tonight? 😉",
-        "Eva (3km): I'm online now. Let’s chat 🔥"
-      ];
-      let index = 0;
-      let interval = setInterval(() => {
-        if (index < messages.length) {
-          let msg = document.createElement("div");
-          msg.textContent = messages[index];
-          msg.onclick = () => {
-            window.location.href = "https://jndbdj.lonelylady.net/?utm_source=da57dc555e50572d&ban=push&j1=1&s1=233166&s2=2115496";
-          };
-          chat.appendChild(msg);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 1000);
-      let timeLeft = 30;
-      let timer = setInterval(() => {
-        timeLeft--;
-        document.getElementById("timer").textContent = "Offer expires in: " + timeLeft + "s";
-        if (timeLeft <= 0) {
-          clearInterval(timer);
-          window.location.href = "https://jndbdj.lonelylady.net/?utm_source=da57dc555e50572d&ban=push&j1=1&s1=233166&s2=2115496";
-        }
-      }, 1000);
-    }
-    function denyAccess() {
-      alert("You must be 18+ to access this content.");
-      window.location.href = "https://google.com";
+    function verifyAge() {
+      document.getElementById('age-check').style.display = 'none';
+      document.getElementById('redirect-section').style.display = 'block';
+
+      // Redirect after 5 seconds (optional)
+      setTimeout(() => {
+        window.location.href = "https://jndbdj.lonelylady.net/?utm_source=da57dc555e50572d&ban=push&j5=1&j6=1&s1=233166&s2=2115496&click_id=<tid>";
+      }, 5000);
     }
   </script>
 </body>
