@@ -1,90 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lonely Ladies Are Waiting For You</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Not Found</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #111, #333);
-      color: white;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 30px;
+      overflow: hidden;
     }
 
     .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 30px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff0055;
+      animation: fadeIn 1.5s ease;
     }
 
     h1 {
-      font-size: 2.5em;
-      color: #ff0055;
-      margin-bottom: 20px;
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      color: #ff3366;
     }
 
     p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 2rem;
     }
 
-    .age-check-btn {
-      background-color: #ff0055;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+    a.button {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      background: linear-gradient(135deg, #ff0055, #ff3366);
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
     }
 
-    .age-check-btn:hover {
-      background-color: #e6004c;
+    a.button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #ff3366aa;
     }
 
-    #age-check {
-      display: block;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    #redirect-section {
-      display: none;
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div id="age-check">
-      <h1>Adults Only</h1>
-      <p>This site contains content only suitable for people 18 years and older.<br>Are you 18 or older?</p>
-      <button class="age-check-btn" onclick="verifyAge()">Yes, I am 18+</button>
-    </div>
 
-    <div id="redirect-section">
-      <h1>You're In!</h1>
-      <p>Hot and lonely women are waiting for you...<br>Click below to meet them now!</p>
-      <a href="javascript:void(0)" 
-         onclick="window.open(decodeURIComponent( window.location.href.substr(window.location.href.lastIndexOf('aref=')+5)), '_self');" 
-         class="age-check-btn">Enter Now</a>
-    </div>
+  <div class="container">
+    <h1>404</h1>
+    <p>Oops! The page you're looking for doesn't exist.</p>
+    <a class="button" href="/">Back to Home</a>
   </div>
 
-  <script>
-    function verifyAge() {
-      document.getElementById('age-check').style.display = 'none';
-      document.getElementById('redirect-section').style.display = 'block';
-
-      // Redirect after 5 seconds (optional)
-      setTimeout(() => {
-        window.location.href = "https://jndbdj.lonelylady.net/?utm_source=da57dc555e50572d&ban=push&j5=1&j6=1&s1=233166&s2=2115496&click_id=<tid>";
-      }, 5000);
-    }
-  </script>
 </body>
 </html>
